@@ -1,10 +1,4 @@
-enum JobPostition {
-  Intern = 'Intern',
-  Senior = 'Senior',
-  Executive = 'Executive',
-  CEO = 'CEO',
-  Founder = 'Founder',
-}
+import { JobPosition } from '../enums/job-position';
 
 export interface User {
   _id?: string;
@@ -12,8 +6,8 @@ export interface User {
   lastName: string;
   email: string;
   age: number;
-  isEmployed: boolean;
-  jobPosition: JobPostition;
+  isActive: boolean;
+  jobPosition: JobPosition;
   createdAt: Date;
   updatedAt: Date;
 }

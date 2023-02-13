@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../interfaces/user';
 import { take, Observable } from 'rxjs';
@@ -9,9 +9,10 @@ import { ApiResponse } from '../interfaces/api-response';
   providedIn: 'root',
 })
 export class UserService {
-  url = environment.apiUrl + '/users/';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  url = environment.apiUrl + '/users/';
+  users: User[] = [];
 
   create(user: User): Observable<ApiResponse<User>> {
     return this.http.post<ApiResponse<User>>(this.url, user).pipe(take(1));

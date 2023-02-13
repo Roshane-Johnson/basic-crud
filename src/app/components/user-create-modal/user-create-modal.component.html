@@ -1,1 +1,63 @@
-<p>user-create-modal works!</p>
+<div class="p-10 grid grid-cols-2 gap-4">
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="createForm.firstName"
+      placeholder="Enter your First name"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="createForm.lastName"
+      placeholder="Enter your Last name"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      [(ngModel)]="createForm.email"
+      type="email"
+      placeholder="Enter your email"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Age</mat-label>
+    <input
+      matInput
+      [(ngModel)]="createForm.age"
+      type="number"
+      placeholder="Enter your age"
+    />
+  </mat-form-field>
+  <mat-form-field
+    appearance="fill"
+    [hideRequiredMarker]="true"
+    [floatLabel]="'always'"
+  >
+    <mat-select required [(ngModel)]="createForm.jobPosition">
+      <mat-option selected>-- None --</mat-option>
+      <mat-option *ngFor="let jobPosition of jobPositions">
+        {{ jobPosition }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="col-span-2 flex justify-end">
+    <button
+      mat-dialog-close
+      class="p-2.5 ml-2 text-sm font-medium text-primary-500 bg-transparent rounded-lg border border-primary-500 hover:bg-gray-100 focus:ring-2 focus:outline-none focus:ring-primary-300"
+    >
+      <span>Cancel</span>
+    </button>
+    <button
+      (click)="onCreateUser()"
+      [mat-dialog-close]="true"
+      class="p-2.5 ml-2 text-sm font-medium text-white bg-primary-400 rounded-lg border border-primary-400 hover:bg-primary-500 focus:ring-2 focus:outline-none focus:ring-primary-300"
+    >
+      <span>Create</span>
+    </button>
+  </div>
+</div>

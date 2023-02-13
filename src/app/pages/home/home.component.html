@@ -1,97 +1,218 @@
-<main class="items-center justify-center">
-  <div class="flex flex-col">
-    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="overflow-hidden">
-          <table class="min-w-full">
-            <thead class="bg-white border-b">
-              <tr>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  First Name
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Last Name
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Email
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Age
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Employed
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Job Position
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Created
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Updated
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="let user of users; let i = index"
-                class="bg-gray-100 border-b"
-              >
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                >
-                  1
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                >
-                  Mark
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                >
-                  Otto
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                >
-                  @mdo
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<div class="grid grid-cols-[2fr_8fr] h-full">
+  <section class="h-full navbar flex flex-col bg-primary text-white">
+    <div class="brand flex justify-between py-8 px-5">
+      <h2 class="font-bold text-lg">User Management System</h2>
     </div>
-  </div>
-</main>
+    <a
+      routerLink="/users"
+      routerLinkActive="bg-primary-600"
+      class="px-5 py-3 transition-colors hover:bg-primary-600"
+    >
+      <div class="flex items-center">
+        <mat-icon>person</mat-icon>
+        <span class="ml-2">User Management</span>
+      </div>
+    </a>
+    <a
+      href="/logout"
+      class="px-5 py-3 mt-auto transition-colors hover:bg-primary-600"
+    >
+      <div class="flex items-center">
+        <mat-icon>power</mat-icon>
+        <span class="ml-2">Logout</span>
+      </div>
+    </a>
+  </section>
+
+  <main class="h-[100vh] w-full overflow-auto">
+    <div class="title text-lg font-semibold p-4 bg-white shadow">
+      User Management
+    </div>
+    <section class="flex flex-col px-10">
+      <div class="flex justify-end my-4">
+        <div class="flex items-center">
+          <label for="simple-search" class="sr-only">Search</label>
+          <div class="relative w-full">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-gray-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="simple-search"
+              class="bg-gray-50 border bord1er-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full pl-10 p-2.5"
+              placeholder="Search"
+              required
+              #search="ngModel"
+              ngModel
+            />
+          </div>
+          <button
+            type="submit"
+            class="p-2.5 ml-2 text-sm font-medium text-white bg-primary-400 rounded-lg border border-primary-400 hover:bg-primary-500 focus:ring-2 focus:outline-none focus:ring-primary-300"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+            <span class="sr-only">Search</span>
+          </button>
+        </div>
+        <button
+          (click)="openCreateModal()"
+          type="submit"
+          class="p-2.5 ml-2 text-sm font-medium text-white bg-primary-400 rounded-lg border border-primary-400 hover:bg-primary-500 focus:ring-2 focus:outline-none focus:ring-primary-300"
+        >
+          <span>New User</span>
+        </button>
+      </div>
+      <table class="table-auto overflow-scroll w-full">
+        <thead class="bg-white border-y">
+          <tr>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            >
+              First Name
+            </th>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            >
+              Last Name
+            </th>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            >
+              Email
+            </th>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            >
+              Age
+            </th>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            >
+              Active
+            </th>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            >
+              Job Position
+            </th>
+            <th
+              scope="col"
+              class="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="">
+          <tr
+            *ngFor="let user of users | search : 'firstName' : search.value"
+            class="bg-gray-100 border-b hover:bg-gray-200"
+            [matTooltipShowDelay]="1500"
+            matTooltip="Created: {{ user.createdAt | date : 'short' }}
+            Updated: {{ user.updatedAt | date : 'short' }}"
+          >
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ user.firstName }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ user.lastName }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ user.email }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ user.age }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              <span [ngSwitch]="user.isActive">
+                <span
+                  class="bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-0.5 rounded-full"
+                  *ngSwitchCase="true"
+                >
+                  True
+                </span>
+                <span
+                  class="bg-red-100 text-red-800 text-base font-medium mr-2 px-2.5 py-0.5 rounded-full"
+                  *ngSwitchCase="false"
+                >
+                  False
+                </span>
+                <span
+                  class="bg-gray-100 text-gray-800 text-base font-medium mr-2 px-2.5 py-0.5 rounded-full"
+                  *ngSwitchDefault
+                >
+                  Unknown
+                </span>
+              </span>
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ user.jobPosition }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between"
+            >
+              <button
+                (click)="openEditModal(user._id)"
+                class="flex-grow p-2.5 last-of-type:mr-0 mr-2 text-sm font-medium text-white bg-primary-400 rounded-lg border border-primary-400 hover:bg-primary-500 focus:ring-2 focus:outline-none focus:ring-primary-300"
+              >
+                <span>Edit</span>
+              </button>
+
+              <button
+                (click)="openDeleteModal(user._id)"
+                class="flex-grow p-2.5 last-of-type:mr-0 mr-2 text-sm font-medium text-white bg-red-500 rounded-lg border border-red-500 hover:bg-red-600 focus:ring-2 focus:outline-none focus:ring-red-400"
+              >
+                <span>Delete</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>

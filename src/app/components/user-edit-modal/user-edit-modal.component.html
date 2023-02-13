@@ -1,0 +1,73 @@
+<div class="p-10 grid grid-cols-2 gap-4">
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="updateForm.firstName"
+      placeholder="Enter your First name"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="updateForm.lastName"
+      placeholder="Enter your Last name"
+    />
+  </mat-form-field>
+  <div class="col-span-2">
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        [(ngModel)]="updateForm.email"
+        type="email"
+        placeholder="Enter your email"
+      />
+    </mat-form-field>
+  </div>
+  <mat-form-field
+    appearance="fill"
+    [hideRequiredMarker]="true"
+    [floatLabel]="'always'"
+  >
+    <mat-select required [(ngModel)]="updateForm.jobPosition">
+      <mat-option selected>-- None --</mat-option>
+      <mat-option
+        *ngFor="let jobPosition of jobPositions"
+        [value]="jobPosition"
+      >
+        {{ jobPosition }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Age</mat-label>
+    <input
+      matInput
+      [(ngModel)]="updateForm.age"
+      type="number"
+      placeholder="Enter your age"
+    />
+  </mat-form-field>
+  <div class="col-span-2">
+    <mat-slide-toggle [(ngModel)]="updateForm.isActive">
+      Active
+    </mat-slide-toggle>
+  </div>
+  <div class="col-span-2 flex justify-end">
+    <button
+      mat-dialog-close
+      class="py-2 px-6 mr-4 border border-blue-500 text-blue-500 bg-transparent hover:bg-gray-100"
+    >
+      Cancel
+    </button>
+    <button
+      (click)="onEditUser()"
+      [mat-dialog-close]="true"
+      class="py-2 px-6 border text-white bg-blue-500 hover:bg-blue-600"
+    >
+      Update
+    </button>
+  </div>
+</div>

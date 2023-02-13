@@ -1,0 +1,11 @@
+<div class="grid place-items-center py-3"></div>
+<h1 mat-dialog-title>Delete User?</h1>
+<div mat-dialog-content>
+  Would you like to delete {{ user.firstName + " " + user.lastName }}?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onDeleteUser()">
+    Ok
+  </button>
+</div>

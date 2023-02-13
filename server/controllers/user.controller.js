@@ -45,7 +45,7 @@ exports.read = async (req, res, next) => {
 	let user
 
 	try {
-		user = await User.find({ _id: id })
+		user = await User.findOne({ _id: id })
 		SuccessResponse(req, res, user)
 	} catch (error) {
 		ErrorResponse(req, res, error)

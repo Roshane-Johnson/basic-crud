@@ -7,24 +7,35 @@ const UserSchema = new Schema(
 	{
 		firstName: {
 			type: String,
-			required: 'First Name' + requiredMessage,
+			min: 3,
+			max: 50,
+			required: [true, 'First Name' + requiredMessage],
 		},
 		lastName: {
+			min: 3,
+			max: 60,
 			type: String,
-			required: 'Last Name' + requiredMessage,
+			required: [true, 'Last Name' + requiredMessage],
 		},
 		email: {
 			type: String,
 			unique: 'This email is already being used',
 			required: [true, 'Email' + requiredMessage],
+			validate: {
+				validator: (value) =>
+					/^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+						value
+					),
+				message: 'This is not a valid email',
+			},
 		},
 		age: {
 			type: Number,
 			required: [true, 'Age' + requiredMessage],
 		},
-		isEmployed: {
+		isActive: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 		jobPosition: {
 			type: String,
